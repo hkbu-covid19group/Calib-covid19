@@ -26,7 +26,7 @@ Liang Tian<sup>1,2,#</sup>, Xuefei Li<sup>1,3,#</sup>, Fei Qi<sup>1,3</sup>, Qia
 - [Reference](#Reference)
 
 ## Download   
-COVID19_tutorial_1.0.zip  (4.0 MB, version 1.0)  
+<a href="https://github.com/hkbu-covid19group/Calib-covid19/blob/master/COVID19_tutorial_1.0.zip">COVID19_tutorial_1.0.zip</a>  (4.0 MB, version 1.0)  
 Last update: Sep 17, 2020
 
 ## Files
