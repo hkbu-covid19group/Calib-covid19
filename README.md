@@ -59,7 +59,7 @@ For details regarding the methods, please refer to our manuscript<sup>[1]</sup>.
 - Quantification of the effect of intervention measurements (Script_R0_reduction_testing.m, Script_R0_reduction_tracing.m): Calculation of reduced reproduction number RE under contact tracing (100% contacts are traced) and testing (no delay in testing report). The above inferred symptom onset time distribution and infectiousness profile are used as inputs.
 ![Infec](https://github.com/hkbu-covid19group/Calib-covid19/blob/master/Samplefigures/Intervention.png)
 
-- Quantification of the effect of population-wide face mask wearing (Script_R0_reduction_mask.m): Left, reduction of transmission rate under mask wearing. Right, heatmap of reduced reproduction number RE as a function of percentage of mask-wearing population and percentage of traced contacts (at day 4 after infection). The above inferred symptom onset time distribution and infectiousness profile are used as inputs.
+- Quantification of the effect of population-wide face mask wearing (Script_R0_reduction_mask.m): Left, reduction of transmission rate under mask wearing. Right, heatmap of reduced reproduction number RE as a function of percentage of mask-wearing population and percentage of traced contacts (at day 5 after infection). The above inferred symptom onset time distribution and infectiousness profile are used as inputs.
 ![Infec](https://github.com/hkbu-covid19group/Calib-covid19/blob/master/Samplefigures/mask-tracing.png)
 
 ## Reference
