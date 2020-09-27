@@ -26,8 +26,8 @@ Liang Tian<sup>1,2,#</sup>, Xuefei Li<sup>1,3,#</sup>, Fei Qi<sup>1,3</sup>, Qia
 - [Reference](#Reference)
 
 ## Download   
-<a href="https://github.com/hkbu-covid19group/Calib-covid19/blob/master/COVID19_tutorial_1.0.zip">COVID19_tutorial_1.0.zip</a>  (3.82 MB, version 1.0)  
-Last update: Sep 17, 2020
+<a href="https://github.com/hkbu-covid19group/Calib-covid19/blob/master/COVID19_tutorial_1.0.zip">COVID19_tutorial_1.0.zip</a>  (3.9 MB, version 1.0)  
+Last update: Sep 27, 2020
 
 ## Files
 The file COVID19_tutorial_1.0.zip contains:   
@@ -53,13 +53,13 @@ For details regarding the methods, please refer to our manuscript<sup>[1]</sup>.
 - Serial interval distribution inferred through convolution of symptom onset time distribution and infectiousness profile. The above estimated P_O(t) and P_I(t) are used as inputs.
 ![Infec](https://github.com/hkbu-covid19group/Calib-covid19/blob/master/Samplefigures/SI_conv.png)
 
-- R0-lambda curve (Script_R0.m): Basic reproduction number R0 as a function of daily growth rate lambda. The above inferred symptom onset time distribution and infectiousness profile are used as inputs. Estimated R0 at lambda=0.3 is displayed in the command window.
+- R0-lambda curve (Script_R0.m): Effective reproduction number RE as a function of daily growth rate lambda. The above inferred symptom onset time distribution and infectiousness profile are used as inputs. Estimated R0 at lambda=0.3 is displayed in the command window.
 ![Infec](https://github.com/hkbu-covid19group/Calib-covid19/blob/master/Samplefigures/R0.png)
 
-- Quantification of the effect of intervention measurements (Script_R0_reduction_testing.m, Script_R0_reduction_tracing.m): Calculation of reduced reproduction number Re under contact tracing (100% contacts are traced) and testing (no delay in testing report). The above inferred symptom onset time distribution and infectiousness profile are used as inputs.
+- Quantification of the effect of intervention measurements (Script_R0_reduction_testing.m, Script_R0_reduction_tracing.m): Calculation of reduced reproduction number RE under contact tracing (100% contacts are traced) and testing (no delay in testing report). The above inferred symptom onset time distribution and infectiousness profile are used as inputs.
 ![Infec](https://github.com/hkbu-covid19group/Calib-covid19/blob/master/Samplefigures/Intervention.png)
 
-- Quantification of the effect of population-wide face mask wearing (Script_R0_reduction_mask.m): Left, reduction of transmission rate under mask wearing. Right, heatmap of reduced reproduction number Re as a function of percentage of mask-wearing population and percentage of traced contacts (at day 4 after infection). The above inferred symptom onset time distribution and infectiousness profile are used as inputs.
+- Quantification of the effect of population-wide face mask wearing (Script_R0_reduction_mask.m): Left, reduction of transmission rate under mask wearing. Right, heatmap of reduced reproduction number RE as a function of percentage of mask-wearing population and percentage of traced contacts (at day 4 after infection). The above inferred symptom onset time distribution and infectiousness profile are used as inputs.
 ![Infec](https://github.com/hkbu-covid19group/Calib-covid19/blob/master/Samplefigures/mask-tracing.png)
 
 ## Reference
