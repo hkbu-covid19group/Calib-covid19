@@ -34,7 +34,7 @@ set(gca,'xtick',-12:6:24)
 set(gca,'TickLength',[0.03,0.03]);
 
 xlabel('Days after symptom onset of infector $t$','fontsize',22,'Interpreter','latex')
-ylabel('Serial interval distribution $P_{SI}(t)$','fontsize',22,'Interpreter','latex')
+ylabel('Serial interval distribution $P_{\mbox{SI}}(t)$','fontsize',22,'Interpreter','latex')
 
 %% Functions
 

@@ -34,7 +34,7 @@ ax=gca;
 set(gca,'TickLength',[0.03,0.03]);
 
 xlabel('Days after symptom onset $t$','fontsize',22,'Interpreter','latex')
-ylabel('Normalized infectiousness $P_I(t)$','fontsize',22,'Interpreter','latex')
+ylabel('Normalized infectiousness $P_{\mbox{I}}(t)$','fontsize',22,'Interpreter','latex')
 
 %% Functions
 function L = ML_infec_ew ( para, W_l, W_u )

@@ -45,15 +45,15 @@ ax=gca;
 set(gca,'TickLength',[0.03,0.03]);
 
 xlabel('Testing date after infection $T_{\mbox{test}}$','fontsize',22,'Interpreter','latex')
-ylabel('$R_e$ under testing and quarantine','fontsize',22,'Interpreter','latex')
+ylabel('$R_{\mbox{E}}$ under testing and quarantine','fontsize',22,'Interpreter','latex')
 title('Intervention - Testing','fontsize',22,'Interpreter','latex')
 
 legend('No testing report delay','Position',[.5 .35 .2 .2],'fontsize',16);
 legend('boxoff');
 
-annotation('textbox',[.3 .59 .3 .3],'String','$R_0=3.87$ at $\lambda=0.3$/day',...
+annotation('textbox',[.3 .59 .3 .3],'String','$R_{\mbox{E}}=3.87$ at $\lambda=0.3$/day',...
     'FitBoxToText','on','Interpreter','latex','fontsize',12);
-annotation('textbox',[.3 .005 .3 .3],'String','$R_0=1.0$ at $\lambda=0.0$/day',...
+annotation('textbox',[.3 .005 .3 .3],'String','$R_{\mbox{E}}=1.0$ at $\lambda=0.0$/day',...
     'FitBoxToText','on','Interpreter','latex','fontsize',12);
 
 %% Functions

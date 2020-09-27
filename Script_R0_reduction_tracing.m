@@ -44,35 +44,35 @@ set(gca,'fontsize',18)
 ax=gca;
 set(gca,'TickLength',[0.03,0.03]);
 xlabel('Contact tracing date after infection $T_{\mbox{trace}}$','fontsize',22,'Interpreter','latex')
-ylabel('$R_e$ under testing and quarantine','fontsize',22,'Interpreter','latex')
+ylabel('$R_{\mbox{E}}$ under testing and quarantine','fontsize',22,'Interpreter','latex')
 title('Intervention - Contact Tracing','fontsize',22,'Interpreter','latex')
 
 legend('100\% contacts are traced','Position',[.3 .6 .2 .2],'fontsize',16,'Interpreter','latex');
 legend('boxoff');
 
-annotation('textbox',[.5 .59 .3 .3],'String','$R_0=3.87$ at $\lambda=0.3$/day',...
+annotation('textbox',[.25 .59 .3 .3],'String','$R_0=3.87$ at $\lambda=0.3$/day',...
     'FitBoxToText','on','Interpreter','latex','fontsize',12);
-annotation('textbox',[.5 .005 .3 .3],'String','$R_0=1.0$ at $\lambda=0.0$/day',...
+annotation('textbox',[.25 .005 .3 .3],'String','$R_0=1.0$ at $\lambda=0.0$/day',...
     'FitBoxToText','on','Interpreter','latex','fontsize',12);
 
 %% Functions
 function R0R = R0R_trace(trace_t,pct,para_infec,para_IPD,t_e)
+
+if trace_t==0
+    R0R=pct;
+    return;
+end
 
 alpha_A=para_infec(1);
 alpha_B=para_infec(2);
 theta_p=-para_infec(3);
 theta_s=theta_p-alpha_A/alpha_B/(alpha_A+alpha_B);
 
-fun=@(t)P_onset_t(t,para_IPD,t_e);
-if trace_t-theta_s<=t_e
-    qs=integral(fun,0,trace_t-theta_s);
-else
-    temp1=integral(fun,0,t_e);
-    temp2=integral(fun,t_e,trace_t-theta_s);
-    qs=temp1+temp2;
-end
+fun=@(T)qs_T(T,para_IPD,t_e);
+temp1=integral(fun,0,trace_t+theta_s);
+temp=temp1/trace_t;
 
-R0R=pct*(1-qs);
+R0R=pct*(1-temp);
 
 end
 
@@ -92,6 +92,24 @@ if t<=t_e
 else
     Po=A*lognpdf(t_e,mu,sigma)*exp(-gamma*(t-t_e));
 end
+
+end
+
+function qs=qs_T(T, para, t_e)
+
+fun=@(t)P_onset_t(t,para,t_e);
+qs=zeros(size(T));
+
+parfor i=1:length(T)
+    if T(i)<=t_e
+        qs(i)=integral(fun,0,T(i));
+    else
+        temp1=integral(fun,0,t_e);
+        temp2=integral(fun,t_e,T(i));
+        qs(i)=temp1+temp2;
+    end    
+end
+
 
 end
 

@@ -34,7 +34,7 @@ ax.YScale='log';
 set(gca,'TickLength',[0.03,0.03]);
 
 xlabel('Days after infection $t$','fontsize',22,'Interpreter','latex')
-ylabel('Symptom onset time distribution $P_O(t)$','fontsize',22,'Interpreter','latex')
+ylabel('Symptom onset time distribution $P_{\mbox{O}}(t)$','fontsize',22,'Interpreter','latex')
 
 %% Functions
 function L = IP_func_ln_c( para, t_e, IPl, IPu )

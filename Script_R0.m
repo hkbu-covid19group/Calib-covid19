@@ -44,7 +44,7 @@ set(gca,'fontsize',18)
 ax=gca;
 set(gca,'TickLength',[0.03,0.03]);
 
-xlabel('Basic reproduction number $R_0$','fontsize',22,'Interpreter','latex')
+xlabel('Effective reproduction number $R_{\mbox{E}}$','fontsize',22,'Interpreter','latex')
 ylabel('Daily growth rate $\lambda$ (1/day)','fontsize',22,'Interpreter','latex')
 
 %% Functions

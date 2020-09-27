@@ -16,32 +16,35 @@ alpha_B=0.540626680919779;
 R0=3.87;
 
 % Contact tracing on day 4 after infection
-day_ct=4;
+day_ct=5;
 
 %% R0 matrix
 
 R0_ct_100=R0R_trace(day_ct,1,[alpha_A,alpha_B,t_p],[mu,sigma,gamma],t_e);
-R0_mat_day4=[];
+R0_mat_day5=[];
 for i=0:1:1000
     for j=0:1:1000
         p_ct=i*0.001;
         p_mask=j*0.001;
         temp=R0*(1-R0_ct_100*p_ct);
-        R0_mat_day4(i+1,j+1)=temp*(1-0.5*p_mask)^2;
+        R0_mat_day5(i+1,j+1)=temp*(1-0.5*p_mask)^2;
     end
 end
 
 % Contour for R0=1
-cl_r01_day4=[];
+cl_r01_day5=[];
 for i=1:1:1001
-    cl_r01_day4(i)=find(R0_mat_day4(i,:)<=1,1);
+    cl_r01_day5(i)=find(R0_mat_day5(i,:)<=1,1);
 end
+
+cl_r01_day5=cl_r01_day5(1:find(cl_r01_day5==1,1));
+
 
 %% Figure
 figure('position',[138 156 590 480]);hold on;
-cl_map=cl_map_gen(min(min(R0_mat_day4)),max(max(R0_mat_day4)),500);
-imagesc(R0_mat_day4);colormap(cl_map);hold on;
-plot(cl_r01_day4-1,0:1:1000,'--','linewidth',1,'color','k');
+cl_map=cl_map_gen(min(min(R0_mat_day5)),max(max(R0_mat_day5)),500);
+imagesc(R0_mat_day5);colormap(cl_map);hold on;
+plot(cl_r01_day5-1,0:1:length(cl_r01_day5)-1,'--','linewidth',1,'color','k');
 
 box on
 axis square
@@ -56,32 +59,32 @@ ax=gca;
 set(gca,'TickLength',[0.03,0.03]);
 xlabel('Percentage of mask-wearing population','fontsize',22,'Interpreter','latex')
 ylabel('Percentage of traced contacts','fontsize',22,'Interpreter','latex')
-title('Basic reproduction number $R_e$','fontsize',22,'Interpreter','latex')
+title('Effective reproduction number $R_{\mbox{E}}$','fontsize',22,'Interpreter','latex')
 
 c = colorbar;
 c.Label.FontSize=18;
 
-legend('$R_0=1.0$','Location','northwest','fontsize',22,'Interpreter','latex');
+legend('$R_{\mbox{E}}=1.0$','Location','northwest','fontsize',22,'Interpreter','latex');
 legend('boxoff');
 
 %% Functions
 function R0R = R0R_trace(trace_t,pct,para_infec,para_IPD,t_e)
+
+if trace_t==0
+    R0R=pct;
+    return;
+end
 
 alpha_A=para_infec(1);
 alpha_B=para_infec(2);
 theta_p=-para_infec(3);
 theta_s=theta_p-alpha_A/alpha_B/(alpha_A+alpha_B);
 
-fun=@(t)P_onset_t(t,para_IPD,t_e);
-if trace_t-theta_s<=t_e
-    qs=integral(fun,0,trace_t-theta_s);
-else
-    temp1=integral(fun,0,t_e);
-    temp2=integral(fun,t_e,trace_t-theta_s);
-    qs=temp1+temp2;
-end
+fun=@(T)qs_T(T,para_IPD,t_e);
+temp1=integral(fun,0,trace_t+theta_s);
+temp=temp1/trace_t;
 
-R0R=pct*(1-qs);
+R0R=pct*(1-temp);
 
 end
 
@@ -101,6 +104,24 @@ if t<=t_e
 else
     Po=A*lognpdf(t_e,mu,sigma)*exp(-gamma*(t-t_e));
 end
+
+end
+
+function qs=qs_T(T, para, t_e)
+
+fun=@(t)P_onset_t(t,para,t_e);
+qs=zeros(size(T));
+
+parfor i=1:length(T)
+    if T(i)<=t_e
+        qs(i)=integral(fun,0,T(i));
+    else
+        temp1=integral(fun,0,t_e);
+        temp2=integral(fun,t_e,T(i));
+        qs(i)=temp1+temp2;
+    end    
+end
+
 
 end
 
